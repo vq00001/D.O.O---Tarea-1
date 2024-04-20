@@ -1,22 +1,79 @@
 import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
-        Expendedor exp = new Expendedor(7,1000);
+        
+    
+        Expendedor exp = new Expendedor(2,1000);
         Moneda m = null;
         Comprador c = null;
-        m = new Moneda1500();
+
+        System.out.println("-------------------------------------");
         c = new Comprador(m,Expendedor.SPRITE,exp);
         System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+        
+        System.out.println("-------------------------------------");
+        m = new Moneda100();
+        c = new Comprador(m,Expendedor.COCA,exp);
+        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+       
+        System.out.println("-------------------------------------");
+        m = new Moneda1000();
+        c = new Comprador(m,Expendedor.COCA,exp);
+        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+        
+        System.out.println("-------------------------------------");
+        m = new Moneda1000();
+        c = new Comprador(m,Expendedor.COCA,exp);
+        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+        
+
     }
 }
+
+
+
+// PagoIncorrectoException, NoHayProductoException y PagoInsuficienteException
+class PagoIncorrectoException extends Exception
+{
+    public PagoIncorrectoException (String message){
+        super(message);
+    }
+}
+
+class PagoInsuficienteException extends Exception
+{
+    public PagoInsuficienteException (String message){
+        super(message);
+    }
+}
+
+class NoHayProductoException extends Exception
+{
+    public NoHayProductoException (String message){
+        super(message);
+    }
+}
+
 class Comprador
 {
     private String sonido;
     private int vuelto = 0;
     private boolean compro;
-    public Comprador(Moneda m, int cualBebida, Expendedor exp)
-    {
-        Bebida b = exp.comprarBebida(m,cualBebida);
+    public Comprador(Moneda m, int cualBebida, Expendedor exp){
+
+        Bebida b = null;
+
+        try{
+            b = exp.comprarBebida(m,cualBebida);
+
+        } catch(PagoIncorrectoException e) {
+            System.out.println("Moneda no ingresada");
+        } catch(PagoInsuficienteException e){
+            System.out.println("Pago insuficiente");
+        } catch(NoHayProductoException e){
+            System.out.println("No hay producto.");
+        }
+
         while (true) {
             Moneda vueltoexp = exp.getVuelto();
             if (vueltoexp == null){break;}
@@ -52,25 +109,42 @@ class Expendedor
             sprite.addBebida(bs);
         }
     }
-    public Bebida comprarBebida(Moneda m, int cual)
-    {
+    public Bebida comprarBebida (Moneda m, int cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{  // cambiar a comprar producto
+    
         Bebida b = null;
-        if (m == null) {return null;}
+
+        if (m == null) {
+            throw new PagoIncorrectoException("No se ingreso moneda.");
+            // return null;
+        }
+
         if (cual == 1) {b = coca.getBebida();}
+
         else if (cual == 2) {b = sprite.getBebida();}
-        if(b == null){monVu.addMoneda(m);}
-        else if (m.getValor() < precio) {
+
+        if(b == null){
+            monVu.addMoneda(m);
+            throw new NoHayProductoException("No quedan bebidas");
+
+        } else if (m.getValor() < precio) {
+            
+            // al pedir una bebida con las monedas insuficientes igualmente se le descuenta la bebida al expendedor, lo que es un problema
             monVu.addMoneda(m);
             b = null;
-        } else if (m.getValor() > precio) {
+            throw new PagoInsuficienteException("Pago Insuficiente.");
+
+        } else if (m.getValor() >= precio) {
+
             int mon100 = (m.getValor() - precio) / 100;
             for (int i = 0; i < mon100; i++) {
                 Moneda vueltomon100 = new Moneda100();
                 monVu.addMoneda(vueltomon100);
             }
         }
+
         return b;
     }
+
     public Moneda getVuelto() {return monVu.getMoneda();}
     public int getPrecio(){return precio;}
 }
@@ -152,3 +226,5 @@ class Sprite extends Bebida
     {super(numSerie);}
     public String beber(){return "sprite";};
 }
+
+
