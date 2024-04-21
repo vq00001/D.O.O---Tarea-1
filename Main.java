@@ -23,9 +23,9 @@ class Comprador{
         
         //Bucle en que se asigna el vuelto 
         while (true) {
-            Moneda vueltoexp = exp.getVuelto(); //Se extrae una moneda del deposito de vuelto del expendedor
-            if (vueltoexp == null){break;}  //Si no se extrajo ninguna moneda se sale del bucle, debido a esto vuelto queda en 0 debido a que no se modifico
-            vuelto = vuelto + vueltoexp.getValor(); //Si se logro sacar una moneda, el valor de esa moneda se suma con el vuelto guardado en las iteraciones anteriores
+            Moneda vueltoexp = exp.getVuelto();                 //Se extrae una moneda del deposito de vuelto del expendedor
+            if (vueltoexp == null){break;}                      //Si no se extrajo ninguna moneda se sale del bucle, debido a esto vuelto queda en 0 debido a que no se modifico
+            vuelto = vuelto + vueltoexp.getValor();             //Si se logro sacar una moneda, el valor de esa moneda se suma con el vuelto guardado en las iteraciones anteriores
             if (b==null) {vuelto = moneda.getValor();break;}    //Si no se logro comprar una bebida se asigna el valor de la moneda que uno ingreso, como que el expendedor la devolviera
         }
 
@@ -102,7 +102,7 @@ class Deposito{
     
     public Bebida getBebida(){  //Funcion para retirar bebidas de la lista
         if (list.size() != 0) {return list.remove(0);}  //Si la lista no esta vasia se retorna la primera bebida de la lista eliminadola a la ves de esta lista
-        else return null;   //Si la lista esta vasia se retorna null
+        else return null;       //Si la lista esta vasia se retorna null
     }
 }
 
