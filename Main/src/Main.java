@@ -2,37 +2,103 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         
-    
-        Expendedor exp = new Expendedor(2,1000);
+        Expendedor exp = null;
         Moneda m = null;
         Comprador c = null;
 
         System.out.println("-------------------------------------");
-        c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
-        
-        System.out.println("-------------------------------------");
-        m = new Moneda100();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
        
-        System.out.println("-------------------------------------");
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
-        
-        System.out.println("-------------------------------------");
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
-        
+        // Sin moneda
+        try{
+            exp = new Expendedor(3,1000);
+            c = new Comprador(m,Expendedor.SPRITE,exp);
+            System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
 
+        } catch(PagoIncorrectoException e) {
+            System.out.println("Moneda no ingresada");
+        } catch(PagoInsuficienteException e){
+            System.out.println("Pago insuficiente");
+        } catch(NoHayProductoException e){
+            System.out.println("No hay producto.");
+        }
+        
+        System.out.println("-------------------------------------");
+
+        // Pago insuficiente
+        try{
+            exp = new Expendedor(3,1000);
+            m = new Moneda100();
+            c = new Comprador(m,Expendedor.SPRITE,exp);
+            System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+            
+        } catch(PagoIncorrectoException e) {
+            System.out.println("Moneda no ingresada");
+        } catch(PagoInsuficienteException e){
+            System.out.println("Pago insuficiente");
+        } catch(NoHayProductoException e){
+            System.out.println("No hay producto.");
+        }
+        
+        System.out.println("-------------------------------------");
+       
+        // Pago justo
+        try{
+            exp = new Expendedor(3,1000);
+            m = new Moneda1000();
+            c = new Comprador(m,Expendedor.COCA,exp);
+            System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+
+        } catch(PagoIncorrectoException e) {
+            System.out.println("Moneda no ingresada");
+        } catch(PagoInsuficienteException e){
+            System.out.println("Pago insuficiente");
+        } catch(NoHayProductoException e){
+            System.out.println("No hay producto.");
+        }
+        
+        System.out.println("-------------------------------------");
+
+        // Pago en exceso
+        try{
+            exp = new Expendedor(3,1000);
+            m = new Moneda1500();
+            c = new Comprador(m,Expendedor.COCA,exp);
+            System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+
+        } catch(PagoIncorrectoException e) {
+            System.out.println("Moneda no ingresada");
+        } catch(PagoInsuficienteException e){
+            System.out.println("Pago insuficiente");
+        } catch(NoHayProductoException e){
+            System.out.println("No hay producto.");
+        }
+
+        System.out.println("-------------------------------------");
+
+        // No hay producto
+        try{
+            exp = new Expendedor(1,1000);
+
+            Moneda mA = new Moneda1000();
+            Comprador a = new Comprador(mA,Expendedor.COCA,exp);
+
+            m = new Moneda1500();
+            c = new Comprador(m,Expendedor.COCA,exp);
+                        
+            System.out.println(c.queBebiste()+" $"+c.cuantoVuelto());
+
+        } catch(PagoIncorrectoException e) {
+            System.out.println("Moneda no ingresada");
+        } catch(PagoInsuficienteException e){
+            System.out.println("Pago insuficiente");
+        } catch(NoHayProductoException e){
+            System.out.println("No hay producto.");
+        }
     }
 }
 
 
 
-// PagoIncorrectoException, NoHayProductoException y PagoInsuficienteException
 class PagoIncorrectoException extends Exception
 {
     public PagoIncorrectoException (String message){
@@ -54,25 +120,19 @@ class NoHayProductoException extends Exception
     }
 }
 
-class Comprador
-{
+class Comprador{
+    
     private String sonido;
     private int vuelto = 0;
     private boolean compro;
-    public Comprador(Moneda m, int cualBebida, Expendedor exp){
+
+    public Comprador(Moneda m, int cualBebida, Expendedor exp) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
 
         Bebida b = null;
 
-        try{
-            b = exp.comprarBebida(m,cualBebida);
+        try{b = exp.comprarBebida(m,cualBebida);}
+        catch (Exception e){throw e;}
 
-        } catch(PagoIncorrectoException e) {
-            System.out.println("Moneda no ingresada");
-        } catch(PagoInsuficienteException e){
-            System.out.println("Pago insuficiente");
-        } catch(NoHayProductoException e){
-            System.out.println("No hay producto.");
-        }
 
         while (true) {
             Moneda vueltoexp = exp.getVuelto();
@@ -88,14 +148,25 @@ class Comprador
     public int cuantoVuelto() {return vuelto;}
     public String queBebiste() {return sonido;}
 }
-class Expendedor
-{
+
+
+// enum ProductNum{
+//     COCA,
+//     SPRITE,
+//     FANTA,
+//     SNICKER,
+//     SUPER8
+// }
+
+
+class Expendedor{
     public static final int  COCA=1;
     public static final int  SPRITE=2;
     private DepositoM monVu;
     private Deposito coca;
     private Deposito sprite;
     private int precio;
+
     public Expendedor(int numBebidas, int precioBebidas)
     {
         precio = precioBebidas;
@@ -122,12 +193,13 @@ class Expendedor
 
         else if (cual == 2) {b = sprite.getBebida();}
 
+        
         if(b == null){
             monVu.addMoneda(m);
             throw new NoHayProductoException("No quedan bebidas");
 
         } else if (m.getValor() < precio) {
-            
+
             // al pedir una bebida con las monedas insuficientes igualmente se le descuenta la bebida al expendedor, lo que es un problema
             monVu.addMoneda(m);
             b = null;
