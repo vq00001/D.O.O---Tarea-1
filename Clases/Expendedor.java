@@ -4,6 +4,9 @@ import Clases.Deposito;     //Importacion de la clase Deposito
 import Clases.Bebidas.*;    //Importacion de todas las clases Bebida (CocaCola,Sprite,Fanta)
 import Clases.Dulces.*;     //Importacion de todas las clases Dulce (Snickers,Super8)
 import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
+import Clases.PagoIncorrectoException;    //Importacion de excepcion
+import Clases.PagoInsuficienteException;    //Importacion de excepcion
+import Clases.NoHayProductoException;    //Importacion de excepcion
 
 public class Expendedor{
     //DECLARACIONES DE ATRIBUTOS     
@@ -55,9 +58,10 @@ public class Expendedor{
         }
     }
     
-    public Producto comprarProducto(Moneda moneda, int cual){   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
+    public Producto comprarProducto(Moneda moneda, int cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
         Producto producto = null;                               //Se crea un puntero auxiliar de tipo Bebida nulo
-        if (moneda == null) {return null;}                      //Si no se ingreso una moneda se sale de la funcion
+
+        if (moneda == null) {throw new PagoIncorrectoException("No se ingreso moneda.");}  //Si no se ingreso una moneda se sale de la funcion
 
         if (cual == CONSTANTES.COCACOLA.getValor()) {producto = coca.get();}           //Si se espesifico una CocaCola, se retira una del deposito
         else if (cual == CONSTANTES.SPRITE.getValor()) {producto = sprite.get();}      //Si se espesifico una Sprite, se retira una del deposito
@@ -65,10 +69,15 @@ public class Expendedor{
         else if (cual == CONSTANTES.SNICKERS.getValor()) {producto = snickers.get();}  //Si se espesifico un Snickers, se retira uno del deposito
         else if (cual == CONSTANTES.SUPER8.getValor()) {producto = super8.get();}      //Si se espesifico un Super8, se retira uno del deposito
 
-        if(producto == null){monVu.add(moneda);}                //Si no se saco un productc de algun deposito, se agrega la moneda que se ingreso al deposito del vuelto
+        if(producto == null){
+            monVu.add(moneda);                //Si no se saco un productc de algun deposito, se agrega la moneda que se ingreso al deposito del vuelto
+            throw new NoHayProductoException("No hay producto.");
+        }
         else if (moneda.getValor() < CONSTANTES.PRECIO.getValor()) {                  //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
             monVu.add(moneda);                                  //Se agrega la moneda al deposito del vuelto
             producto = null;                                    //Se elimina al producto que se saco del deposito del puntero que la referenciaba
+            throw new PagoInsuficienteException("El valor ingresado es menor al precio del producto.");
+            
         } else if (moneda.getValor() > CONSTANTES.PRECIO.getValor()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
             int mon100 = (moneda.getValor() - CONSTANTES.PRECIO.getValor()) / 100;    //Se calcula la diferencia entre el presio y el valor del producto, dividiendolo por 100 para el siguiente for
             for (int i = 0; i < mon100; i++) {                  //For en que se agregan monedas al deposito del vuelto con el valor del vuelto calculado anteriormente
@@ -81,5 +90,5 @@ public class Expendedor{
     
     public Moneda getVuelto() {return monVu.get();}   //Funcion que retorna una a una las monedas del deposito del vuelto
     
-    public int getPrecio(){return CONSTANTES.PRECIO.getValor();}    //Funcion que retorna el valor numerico del precio de los productos
+    public int getPrecio() {return CONSTANTES.PRECIO.getValor();}    //Funcion que retorna el valor numerico del precio de los productos
 }

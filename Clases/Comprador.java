@@ -12,6 +12,7 @@ public class Comprador{
     //DECLARACIONES DE METODOS
     //Constructor: recibe la moneda con la que comprara, un numero que identifica el tipo de producto y la referencia al Expendedor en el que comprara
     public Comprador(Moneda moneda, int cualBebida, Expendedor exp){
+        
         Producto producto = exp.comprarProducto(moneda,cualBebida);    //Se compra el producto en el expendedor entregandole la moneda y el numero que identifica el tipo de producto
         
         //Bucle en que se asigna el vuelto 
