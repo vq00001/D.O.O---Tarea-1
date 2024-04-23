@@ -7,7 +7,7 @@ public class Main {
         Moneda m = null;
         Comprador c = null;
         m = new Moneda1500();
-        c = new Comprador(m,Precios_Productos.SPRITE,exp);
+        c = new Comprador(m,Precios_Productos.SNICKERS,exp);
         System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
     }
 }
