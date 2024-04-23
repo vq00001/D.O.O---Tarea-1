@@ -60,5 +60,6 @@ public class Main {
         } catch (NoHayProductoException e){
             System.out.println("No hay producto.");
         }
+
     }
 }

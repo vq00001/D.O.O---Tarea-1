@@ -1,6 +1,6 @@
 package Clases;
 
-import Clases.Deposito;     //Importacion de la clase Deposito
+import Clases.*;            //Importacion de las clases del paquete Clases (Deposito,Producto,Moneda)
 import Clases.Bebidas.*;    //Importacion de todas las clases Bebida (CocaCola,Sprite,Fanta)
 import Clases.Dulces.*;     //Importacion de todas las clases Dulce (Snickers,Super8)
 import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
@@ -16,22 +16,6 @@ public class Expendedor{
     private Deposito<Bebida> fanta;     //Deposito que guarda las bebidas Fanta
     private Deposito<Dulce> snickers;   //Deposito que guarda los dulces Snickers
     private Deposito<Dulce> super8;     //Deposito que guarda los dulces Super8
-
-
-    public enum CONSTANTES{  //Enumeracion que representa los productos que se pueden comprar
-        COCACOLA(1),           //Constante que representa a la CocaCola de forma numerica
-        SPRITE(2),             //Constante que representa a la Sprite de forma numerica
-        FANTA(3),              //Constante que representa a la Fanta de forma numerica
-        SNICKERS(4),           //Constante que representa a la Snickers de forma numerica
-        SUPER8(5),             //Constante que representa a la Super8 de forma numerica
-        PRECIO(1000);          //Constante que representa el precio de los productos de forma numerica
-
-        private final int valor;    //Variable que guarda el valor numerico de la constante
-
-        CONSTANTES(int valor) {this.valor = valor;}  //Constructor de la enumeracion que asigna el valor numerico a la constante
-
-        public int getValor() {return valor;}     //Funcion que retorna el valor numerico de la constante
-    };
 
     //DECLARACIONES DE METODOS
     //Contructor: Recibe la cantidad de bebidas con la que se llenaran los depositos y el presio de estas
@@ -58,16 +42,32 @@ public class Expendedor{
         }
     }
     
+
     public Producto comprarProducto(Moneda moneda, int cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
+
         Producto producto = null;                               //Se crea un puntero auxiliar de tipo Bebida nulo
 
         if (moneda == null) {throw new PagoIncorrectoException("No se ingreso moneda.");}  //Si no se ingreso una moneda se sale de la funcion
 
-        if (cual == CONSTANTES.COCACOLA.getValor()) {producto = coca.get();}           //Si se espesifico una CocaCola, se retira una del deposito
-        else if (cual == CONSTANTES.SPRITE.getValor()) {producto = sprite.get();}      //Si se espesifico una Sprite, se retira una del deposito
-        else if (cual == CONSTANTES.FANTA.getValor()) {producto = fanta.get();}        //Si se espesifico una Fanta, se retira una del deposito
-        else if (cual == CONSTANTES.SNICKERS.getValor()) {producto = snickers.get();}  //Si se espesifico un Snickers, se retira uno del deposito
-        else if (cual == CONSTANTES.SUPER8.getValor()) {producto = super8.get();}      //Si se espesifico un Super8, se retira uno del deposito
+        switch (cual) {   //Switch que permite retirar un producto del deposito correspondiente
+            case COCACOLA:
+                producto = coca.get();    //Se retira una CocaCola del deposito
+                break;
+            case SPRITE:
+                producto = sprite.get();    //Se retira una Sprite del deposito
+                break;
+            case FANTA:
+                producto = fanta.get();   //Se retira una Fanta del deposito
+                break;
+            case SNICKERS:
+                producto = snickers.get();  //Se retira un Snickers del deposito
+                break;
+            case SUPER8:
+                producto = super8.get();    //Se retira un Super8 del deposito
+                break;
+            default:
+                break;
+        }
 
         if(producto == null){
             monVu.add(moneda);                //Si no se saco un productc de algun deposito, se agrega la moneda que se ingreso al deposito del vuelto
@@ -85,10 +85,27 @@ public class Expendedor{
                 monVu.add(vueltomon100);                        //Se agrega la moneda al deposito del vuelto
             }
         }
+      
         return producto;   //Se retorna el producto que se compro o null en otros casos
     }
     
     public Moneda getVuelto() {return monVu.get();}   //Funcion que retorna una a una las monedas del deposito del vuelto
     
-    public int getPrecio() {return CONSTANTES.PRECIO.getValor();}    //Funcion que retorna el valor numerico del precio de los productos
+    public int getPrecio(Precios_Productos producto){                             //Funcion que retorna el valor numerico del precio de los productos
+        switch (producto) {
+            case COCACOLA:
+                return Precios_Productos.COCACOLA.getPrecio();
+            case SPRITE:
+                return Precios_Productos.SPRITE.getPrecio();
+            case FANTA:
+                return Precios_Productos.FANTA.getPrecio();
+            case SNICKERS:
+                return Precios_Productos.SNICKERS.getPrecio();
+            case SUPER8:
+                return Precios_Productos.SUPER8.getPrecio();
+            default:
+                return 0;
+        }
+    }
+
 }

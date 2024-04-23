@@ -2,6 +2,7 @@ package Clases;
 
 import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
 import Clases.Producto;    //Importacion de la clase Producto
+import Clases.Precios_Productos;    //Importacion de la clase Precios_Productos
 
 
 public class Comprador{
@@ -11,6 +12,7 @@ public class Comprador{
 
     //DECLARACIONES DE METODOS
     //Constructor: recibe la moneda con la que comprara, un numero que identifica el tipo de producto y la referencia al Expendedor en el que comprara
+
     public Comprador(Moneda moneda, int cualBebida, Expendedor exp) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
         
         Producto producto = null;
@@ -20,6 +22,7 @@ public class Comprador{
         } catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoException e){
             throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
         }
+
         
         //Bucle en que se asigna el vuelto 
         while (true) {
