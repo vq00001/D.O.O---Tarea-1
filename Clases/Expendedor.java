@@ -4,6 +4,7 @@ import Clases.*;            //Importacion de las clases del paquete Clases (Depo
 import Clases.Bebidas.*;    //Importacion de todas las clases Bebida (CocaCola,Sprite,Fanta)
 import Clases.Dulces.*;     //Importacion de todas las clases Dulce (Snickers,Super8)
 import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
+import Clases.Precios_Productos; 
 import Clases.PagoIncorrectoException;    //Importacion de excepcion
 import Clases.PagoInsuficienteException;    //Importacion de excepcion
 import Clases.NoHayProductoException;    //Importacion de excepcion
@@ -43,7 +44,7 @@ public class Expendedor{
     }
     
 
-    public Producto comprarProducto(Moneda moneda, int cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
+    public Producto comprarProducto(Moneda moneda, Precios_Productos cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
 
         Producto producto = null;                               //Se crea un puntero auxiliar de tipo Bebida nulo
 
@@ -72,14 +73,15 @@ public class Expendedor{
         if(producto == null){
             monVu.add(moneda);                //Si no se saco un productc de algun deposito, se agrega la moneda que se ingreso al deposito del vuelto
             throw new NoHayProductoException("No hay producto.");
-        }
-        else if (moneda.getValor() < CONSTANTES.PRECIO.getValor()) {                  //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
+            
+        } else if (moneda.getValor() < cual.getPrecio()) {                  //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
             monVu.add(moneda);                                  //Se agrega la moneda al deposito del vuelto
             producto = null;                                    //Se elimina al producto que se saco del deposito del puntero que la referenciaba
             throw new PagoInsuficienteException("El valor ingresado es menor al precio del producto.");
             
-        } else if (moneda.getValor() > CONSTANTES.PRECIO.getValor()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
-            int mon100 = (moneda.getValor() - CONSTANTES.PRECIO.getValor()) / 100;    //Se calcula la diferencia entre el presio y el valor del producto, dividiendolo por 100 para el siguiente for
+        } else if (moneda.getValor() > cual.getPrecio()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
+            
+            int mon100 = (moneda.getValor() - cual.getPrecio()) / 100;    //Se calcula la diferencia entre el presio y el valor del producto, dividiendolo por 100 para el siguiente for
             for (int i = 0; i < mon100; i++) {                  //For en que se agregan monedas al deposito del vuelto con el valor del vuelto calculado anteriormente
                 Moneda vueltomon100 = new Moneda100();          //Se instancia una moneda de 100
                 monVu.add(vueltomon100);                        //Se agrega la moneda al deposito del vuelto

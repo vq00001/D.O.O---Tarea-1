@@ -12,8 +12,8 @@ public class Main {
         try{
             exp = new Expendedor(3);
             m = new Moneda100();
-            c = new Comprador(m,Expendedor.CONSTANTES.SPRITE.getValor(),exp);
-            System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
+            c = new Comprador(m,Precios_Productos.SPRITE ,exp);
+            System.out.println(c.queConsumiste() + " $"+c.cuantoVuelto());
 
         } catch (PagoIncorrectoException e){
             System.out.println("No se ha ingresado moneda.");
@@ -27,8 +27,9 @@ public class Main {
 
         // Probar con moneda nula
         try{
+            m = null;
             exp = new Expendedor(3);
-            c = new Comprador(m,Expendedor.CONSTANTES.SPRITE.getValor(),exp);
+            c = new Comprador(m, Precios_Productos.SPRITE,exp);
             System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
 
         } catch (PagoIncorrectoException e){
@@ -46,11 +47,11 @@ public class Main {
             exp = new Expendedor(2);
 
             Moneda m1 = new Moneda1000();
-            Comprador c1 = new Comprador(m1, Expendedor.CONSTANTES.SPRITE.getValor(), exp);
+            Comprador c1 = new Comprador(m1, Precios_Productos.SPRITE, exp);
 
-            m = new Moneda100();
-            c = new Comprador(m,Expendedor.CONSTANTES.SPRITE.getValor(),exp);
-            
+            m = new Moneda1000();
+            c = new Comprador(m, Precios_Productos.SPRITE ,exp);
+
             System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
 
         } catch (PagoIncorrectoException e){
