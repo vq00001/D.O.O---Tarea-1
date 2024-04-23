@@ -2,6 +2,7 @@ package Clases;
 
 import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
 import Clases.Producto;    //Importacion de la clase Producto
+import Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
 import Clases.Precios_Productos;    //Importacion de la clase Precios_Productos
 
 

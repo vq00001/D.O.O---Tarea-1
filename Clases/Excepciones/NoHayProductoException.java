@@ -1,4 +1,4 @@
-package Clases;
+package Clases.Excepciones;
 
 public class NoHayProductoException extends Exception{
     public NoHayProductoException (String message){

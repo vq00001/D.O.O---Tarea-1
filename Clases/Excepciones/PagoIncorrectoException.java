@@ -1,4 +1,4 @@
-package Clases;
+package Clases.Excepciones;
 
 public class PagoIncorrectoException extends Exception{
     public PagoIncorrectoException (String message){
