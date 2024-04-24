@@ -15,13 +15,9 @@ public class Main {
             c = new Comprador(m,Precios_Productos.SPRITE ,exp);
             System.out.println(c.queConsumiste() + " $"+c.cuantoVuelto());
 
-        } catch (PagoIncorrectoException e){
-            System.out.println("No se ha ingresado moneda.");
-        } catch(PagoInsuficienteException e){
-            System.out.println("El valor ingresado es insuficiente.");
-        } catch (NoHayProductoException e){
-            System.out.println("No hay producto.");
-        }
+        } catch (PagoIncorrectoException | PagoInsuficienteException | NoHayProductoException e){
+            System.err.println(e.getMessage());
+        } 
 
         System.out.println("---------------------------------");
 
@@ -29,16 +25,12 @@ public class Main {
         try{
             m = null;
             exp = new Expendedor(3);
-            c = new Comprador(m, Precios_Productos.SPRITE,exp);
+            c = new Comprador(m, Precios_Productos.SNICKERS,exp);
             System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
 
-        } catch (PagoIncorrectoException e){
-            System.out.println("No se ha ingresado moneda.");
-        } catch(PagoInsuficienteException e){
-            System.out.println("El valor ingresado es insuficiente.");
-        } catch (NoHayProductoException e){
-            System.out.println("No hay producto.");
-        }
+        } catch (PagoIncorrectoException | PagoInsuficienteException | NoHayProductoException e){
+            System.err.println(e.getMessage());
+        } 
 
         System.out.println("---------------------------------");
 
@@ -47,20 +39,15 @@ public class Main {
             exp = new Expendedor(2);
 
             Moneda m1 = new Moneda1000();
-            Comprador c1 = new Comprador(m1, Precios_Productos.SPRITE, exp);
+            Comprador c1 = new Comprador(m1, Precios_Productos.SNICKERS, exp);
 
             m = new Moneda1000();
-            c = new Comprador(m, Precios_Productos.SPRITE ,exp);
+            c = new Comprador(m, Precios_Productos.SNICKERS ,exp);
 
             System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
 
-        } catch (PagoIncorrectoException e){
-            System.out.println("No se ha ingresado moneda.");
-        } catch(PagoInsuficienteException e){
-            System.out.println("El valor ingresado es insuficiente.");
-        } catch (NoHayProductoException e){
-            System.out.println("No hay producto.");
-        }
-
+        } catch (PagoIncorrectoException | PagoInsuficienteException | NoHayProductoException e){
+            System.err.println(e.getMessage());
+        } 
     }
 }
