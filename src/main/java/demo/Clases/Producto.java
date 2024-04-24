@@ -1,4 +1,4 @@
-package Clases;
+package demo.Clases;
 
 public abstract class Producto {
     //DECLARACIONES DE ATRIBUTOS
