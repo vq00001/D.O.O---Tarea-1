@@ -49,5 +49,19 @@ public class Main {
         } catch (PagoIncorrectoException | PagoInsuficienteException | NoHayProductoException e){
             System.err.println(e.getMessage());
         } 
+
+        System.out.println("---------------------------------");
+
+        // Probar con moneda de igual valor al precio
+        try{
+            exp = new Expendedor(2);
+            m = new Moneda500();
+            c = new Comprador(m, Precios_Productos.SUPER8 ,exp);
+
+            System.out.println(c.queConsumiste()+" $"+c.cuantoVuelto());
+
+        } catch (PagoIncorrectoException | PagoInsuficienteException | NoHayProductoException e){
+            System.err.println(e.getMessage());
+        }
     }
 }
