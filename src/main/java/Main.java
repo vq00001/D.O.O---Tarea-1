@@ -1,3 +1,5 @@
+package main.java;
+
 import main.java.Clases.*;
 import main.java.Clases.Monedas.*;
 import main.java.Clases.Excepciones.*;
