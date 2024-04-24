@@ -48,6 +48,21 @@ public class Expendedor{
 
         if (moneda == null) {throw new PagoIncorrectoException("No se ingreso moneda.");}  //Si no se ingreso una moneda se sale de la funcion
 
+
+        if (moneda.getValor() < cualProducto.getPrecio()) {                  //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
+            monVu.add(moneda);                                  //Se agrega la moneda al deposito del vuelto
+            producto = null;                                    //Se elimina al producto que se saco del deposito del puntero que la referenciaba
+            throw new PagoInsuficienteException("El valor ingresado es menor al precio del producto.");
+
+        } else if (moneda.getValor() > cualProducto.getPrecio()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
+
+            int mon100 = (moneda.getValor() - cualProducto.getPrecio()) / 100;    //Se calcula la diferencia entre el presio y el valor del producto, dividiendolo por 100 para el siguiente for
+            for (int i = 0; i < mon100; i++) {                  //For en que se agregan monedas al deposito del vuelto con el valor del vuelto calculado anteriormente
+                Moneda vueltomon100 = new Moneda100();          //Se instancia una moneda de 100
+                monVu.add(vueltomon100);                        //Se agrega la moneda al deposito del vuelto
+            }
+        }
+
         switch (cualProducto) {   //Switch que permite retirar un producto del deposito correspondiente
             case COCACOLA:
                 producto = coca.get();    //Se retira una CocaCola del deposito
@@ -68,23 +83,17 @@ public class Expendedor{
                 break;
         }
 
+       
+        // vaciar el monedero porque no se compro el producto, para devolver la moneda ingresada por el comprador.
         if(producto == null){
-            monVu.add(moneda);                //Si no se saco un productc de algun deposito, se agrega la moneda que se ingreso al deposito del vuelto
+            Moneda aux = null;
+            do{
+               aux = monVu.get();
+            } while(aux != null);
+
+            monVu.add(moneda);                
             throw new NoHayProductoException("No hay producto.");
-
-        } else if (moneda.getValor() < cualProducto.getPrecio()) {                  //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
-            monVu.add(moneda);                                  //Se agrega la moneda al deposito del vuelto
-            producto = null;                                    //Se elimina al producto que se saco del deposito del puntero que la referenciaba
-            throw new PagoInsuficienteException("El valor ingresado es menor al precio del producto.");
-
-        } else if (moneda.getValor() > cualProducto.getPrecio()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
-
-            int mon100 = (moneda.getValor() - cualProducto.getPrecio()) / 100;    //Se calcula la diferencia entre el presio y el valor del producto, dividiendolo por 100 para el siguiente for
-            for (int i = 0; i < mon100; i++) {                  //For en que se agregan monedas al deposito del vuelto con el valor del vuelto calculado anteriormente
-                Moneda vueltomon100 = new Moneda100();          //Se instancia una moneda de 100
-                monVu.add(vueltomon100);                        //Se agrega la moneda al deposito del vuelto
-            }
-        }
+        } 
 
         return producto;   //Se retorna el producto que se compro o null en otros casos
     }
