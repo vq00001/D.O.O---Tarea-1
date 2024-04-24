@@ -8,8 +8,8 @@ import Clases.Excepciones.*;
 
 /**
  * Clase que representa un Expendedor de productos
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 public class Expendedor{
     //DECLARACIONES DE ATRIBUTOS

@@ -4,7 +4,7 @@ import java.lang.Comparable;    //Importacion de la interfaz Comparable
 /**
  * Clase abstracta que representa una moneda
  * @author Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public abstract class Moneda implements Comparable<Moneda>{
     /**

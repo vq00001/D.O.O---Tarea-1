@@ -5,8 +5,8 @@ import java.util.ArrayList;     //Importacion de la clase ArrayList
 /**
  * Clase que representa un deposito de productos
  * @param <T> Tipo de producto que se guardara en el deposito
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 public class Deposito<T>{
     //DECLARACIONES DE ATRIBUTOS//

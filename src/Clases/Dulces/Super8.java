@@ -2,7 +2,7 @@ package Clases.Dulces;
 
 /**
  * Clase que representa un dulce de tipo Super8
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public class Super8 extends Dulce{
     /**

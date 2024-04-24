@@ -2,7 +2,7 @@ package Clases.Monedas;
 
 /**
  * Clase que representa una moneda de 1500
- * @autor Valeria Quiroga
+ * @author Valeria Quiroga
  */
 public class Moneda1500 extends Moneda{
     /**

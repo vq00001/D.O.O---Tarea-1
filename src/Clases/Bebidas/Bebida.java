@@ -3,8 +3,8 @@ import Clases.Producto;
 
 /**
  * Clase abstracta que representa una bebida
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 public abstract class Bebida extends Producto{
     //DECLARACIONES DE METODOS

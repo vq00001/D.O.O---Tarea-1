@@ -3,7 +3,7 @@ package Clases.Bebidas;
 /**
  * Clase que representa una bebida de tipo CocaCola
  * @author Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public class CocaCola extends Bebida{
     /**

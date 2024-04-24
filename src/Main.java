@@ -4,8 +4,8 @@ import Clases.Excepciones.*;
 
 /**
  * Clase principal que prueba el funcionamiento de las clases
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 
 public class Main {

@@ -2,7 +2,7 @@ package Clases.Excepciones;
 
 /**
  * PagoInsuficienteException es una excepción que se lanza cuando el pago ingresado no es suficiente para comprar el producto que se quiere adquirir
- * @autor Valeria Quiroga
+ * @author Valeria Quiroga
  */
 public class PagoInsuficienteException extends Exception{
     /**

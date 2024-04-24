@@ -7,8 +7,8 @@ import Clases.Precios_Productos;
 
 /**
  * Clase que representa a un comprador
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author    Valeria Quiroga
+ * @author Antonio Benavides
  */
 public class Comprador{
     //DECLARACIONES DE ATRIBUTOS

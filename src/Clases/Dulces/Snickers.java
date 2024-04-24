@@ -2,7 +2,7 @@ package Clases.Dulces;
 
 /**
  * Clase que representa un dulce de tipo Snickers
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public class Snickers extends Dulce{
     /**

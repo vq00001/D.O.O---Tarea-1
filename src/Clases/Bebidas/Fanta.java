@@ -2,7 +2,7 @@ package Clases.Bebidas;
 
 /**
  * Clase que representa una bebida de tipo Fanta
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public class Fanta extends Bebida{
     /**

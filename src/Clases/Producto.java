@@ -2,7 +2,7 @@ package Clases;
 
 /**
  * Clase abstracta que representa un producto
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public abstract class Producto {
     //DECLARACIONES DE ATRIBUTOS

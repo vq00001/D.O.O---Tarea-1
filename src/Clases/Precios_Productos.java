@@ -2,7 +2,7 @@ package Clases;
 
 /**
  * Enumeracion que representa los productos que se pueden comprar y sus precios
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 public enum Precios_Productos{
     /**
