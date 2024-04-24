@@ -1,4 +1,4 @@
-package Clases;
+package demo.Clases;
 
 public enum Precios_Productos{  //Enumeracion que representa los productos que se pueden comprar
     COCACOLA(100),           //Constante que contiene el precio de la CocaCola

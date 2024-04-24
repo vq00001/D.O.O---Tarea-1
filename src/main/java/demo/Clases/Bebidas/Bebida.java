@@ -1,6 +1,6 @@
-package Clases.Bebidas;
+package demo.Clases.Bebidas;
 
-import Clases.Producto;
+import demo.Clases.Producto;
 
 public abstract class Bebida extends Producto{
     //DECLARACIONES DE METODOS

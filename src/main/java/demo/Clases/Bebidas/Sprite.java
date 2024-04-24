@@ -1,4 +1,4 @@
-package Clases.Bebidas;
+package demo.Clases.Bebidas;
 
 public class Sprite extends Bebida{
     public Sprite(int numSerie){super(numSerie);}   //Constructor que utiliza al constructor de su clase Padre Bebida

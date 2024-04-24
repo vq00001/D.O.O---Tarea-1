@@ -1,4 +1,4 @@
-package Clases.Monedas;
+package demo.Clases.Monedas;
 import java.lang.Comparable;    //Importacion de la interfaz Comparable
 
 public abstract class Moneda implements Comparable<Moneda>{

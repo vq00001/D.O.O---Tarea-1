@@ -1,8 +1,9 @@
-package Clases;
+package demo.Clases;
 
-import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
-import Clases.Producto;    //Importacion de la clase Producto
-import Clases.Precios_Productos;    //Importacion de la clase Precios_Productos
+import demo.Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
+import demo.Clases.Producto;    //Importacion de la clase Producto
+import demo.Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
+import demo.Clases.Precios_Productos;    //Importacion de la clase Precios_Productos
 
 
 public class Comprador{
@@ -13,12 +14,12 @@ public class Comprador{
     //DECLARACIONES DE METODOS
     //Constructor: recibe la moneda con la que comprara, un numero que identifica el tipo de producto y la referencia al Expendedor en el que comprara
 
-    public Comprador(Moneda moneda, Precios_Productos cualBebida, Expendedor exp) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
+    public Comprador(Moneda moneda, Precios_Productos cualProducto, Expendedor exp) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
         
         Producto producto = null;
 
         try{
-            producto = exp.comprarProducto(moneda, cualBebida);    //Se compra el producto en el expendedor entregandole la moneda y el numero que identifica el tipo de producto
+            producto = exp.comprarProducto(moneda, cualProducto);    //Se compra el producto en el expendedor entregandole la moneda y el numero que identifica el tipo de producto
         
         } catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoException e){
             throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
