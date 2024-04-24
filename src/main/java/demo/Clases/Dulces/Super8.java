@@ -1,4 +1,4 @@
-package Clases.Dulces;
+package demo.Clases.Dulces;
 
 public class Super8 extends Dulce{
     //DECLARACIONES DE METODOS

@@ -1,7 +1,7 @@
-import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
-import Clases.Monedas.Moneda1000;
-import Clases.*;            //Importacion de todas las clases del paquete Clases (Expendedor,Deposito,Comprador,Producto)
-import Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
+package demo;
+import demo.Clases.*;
+import demo.Clases.Excepciones.*;
+import demo.Clases.Monedas.*;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,9 +1,9 @@
-package Clases;
+package demo.Clases;
 
-import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
-import Clases.Producto;    //Importacion de la clase Producto
-import Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
-import Clases.Precios_Productos;    //Importacion de la clase Precios_Productos
+import demo.Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
+import demo.Clases.Producto;    //Importacion de la clase Producto
+import demo.Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
+import demo.Clases.Precios_Productos;    //Importacion de la clase Precios_Productos
 
 
 public class Comprador{

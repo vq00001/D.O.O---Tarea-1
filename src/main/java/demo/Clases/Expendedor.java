@@ -1,13 +1,9 @@
-package Clases;
-
-//Importacion de excepcion
-//Importacion de excepcion
-//Importacion de excepcion
-import Clases.*;            //Importacion de las clases del paquete Clases (Deposito,Producto,Moneda)
-import Clases.Bebidas.*;    //Importacion de todas las clases Bebida (CocaCola,Sprite,Fanta)
-import Clases.Dulces.*;     //Importacion de todas las clases Dulce (Snickers,Super8)
-import Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
-import Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
+package demo.Clases;
+import demo.Clases.*;            //Importacion de las clases del paquete Clases (Deposito,Producto,Moneda)
+import demo.Clases.Bebidas.*;    //Importacion de todas las clases Bebida (CocaCola,Sprite,Fanta)
+import demo.Clases.Dulces.*;     //Importacion de todas las clases Dulce (Snickers,Super8)
+import demo.Clases.Excepciones.*;    //Importacion de todas las clases de Excepciones (PagoIncorrectoException,PagoInsuficienteException,NoHayProductoException)
+import demo.Clases.Monedas.*;    //Importacion de todas las clases de Moneda (100,500,1000,1500)
 
 public class Expendedor{
     //DECLARACIONES DE ATRIBUTOS     

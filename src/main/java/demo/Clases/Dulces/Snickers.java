@@ -1,4 +1,4 @@
-package Clases.Dulces;
+package demo.Clases.Dulces;
 
 public class Snickers extends Dulce{
     //DECLARACIONES DE METODOS

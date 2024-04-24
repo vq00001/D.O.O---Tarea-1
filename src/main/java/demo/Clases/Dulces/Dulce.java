@@ -1,6 +1,6 @@
-package Clases.Dulces;
+package demo.Clases.Dulces;
 
-import Clases.Producto; //Importacion de la clase Producto
+import demo.Clases.Producto; //Importacion de la clase Producto
 
 public abstract class Dulce extends Producto{
     //DECLARACIONES DE METODOS

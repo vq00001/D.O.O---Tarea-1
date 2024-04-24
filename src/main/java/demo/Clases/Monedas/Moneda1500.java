@@ -1,4 +1,4 @@
-package Clases.Monedas;
+package demo.Clases.Monedas;
 
 public class Moneda1500 extends Moneda{
     public Moneda1500(){super();}           //Constructor vasio
