@@ -17,7 +17,7 @@ public class Deposito<T>{
 
     //DECLARACIONES DE METODOS//
     /**
-     * Constructor de la clase Deposito que instancia la lista que guardara a las productos
+     * Constructor de la clase Deposito que instancia la lista que guardara a los productos
      */
     public Deposito() {list = new ArrayList<T>();}
 
