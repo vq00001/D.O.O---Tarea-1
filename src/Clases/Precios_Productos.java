@@ -11,7 +11,7 @@ public enum Precios_Productos{
     COCACOLA(100),
 
     /**
-     * Precio de la Pepsi
+     * Precio de la Sprite
      */
     SPRITE(200),
 
