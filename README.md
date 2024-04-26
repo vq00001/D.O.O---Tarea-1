@@ -2,7 +2,7 @@ Tarea 1 Desarrollo Orientado Al Objeto
 
 Integrantes:
  - Valeria Quiroga Carrere.
- - Antonio Benavides Puentes.
+ - Antonio Jesus Benavides Puentes.
  - Maria Jose San Martin Salgado.
 
 Proyecto:
